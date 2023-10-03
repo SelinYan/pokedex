@@ -17,6 +17,11 @@ body {
     padding: 30px;
     background-image: url('https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg');
   }
+
+.card img {
+    width: 100%;
+}
+
   
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
