@@ -34,13 +34,15 @@ const fetchData = async () => {
 const pokeCards = () => {
   const cards = pokeData
     .map((pokemon) => {
-      return `<div class="card">
-    <img src=${pokemon.img} />
-    <p class="id">${pokemon.id}</p>
-    <div class="container">
-      <h2 class="id">name</h2>
-    </div>
-  </div>`;
+      return `<div>
+  <img src="${pokemon.img}" alt="${pokemon.name}"/>
+  <p>${pokemon.id}</p>
+  <h2>${pokemon.name}</h2>
+  <div>
+    <p>Water</p>
+    <p>Poison</p>
+  </div>
+</div>`;
     })
     .join("");
 

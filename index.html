@@ -13,29 +13,31 @@
   </head>
 
   <body>
-    <h1>Pokedex</h1>
-    <div class="section" id="generation">
-      <button class="gen" id="gen1">Gen I</button>
-      <button class="gen" id="gen2">Gen II</button>
-      <button class="gen" id="gen3">Gen III</button>
-      <button class="gen" id="gen4">Gen IV</button>
-      <button class="gen" id="gen5">Gen V</button>
-      <button class="gen" id="gen6">Gen VI</button>
-      <button class="gen" id="gen7">Gen VII</button>
-      <button class="gen" id="gen8">Gen VIII</button>
-      <button class="gen" id="gen9">Gen IX</button>
+    <div class="container">
+      <h1>Pokedex</h1>
+      <div class="generation">
+        <button class="generation" id="gen1">Gen I</button>
+        <button class="generation" id="gen2">Gen II</button>
+        <button class="generation" id="gen3">Gen III</button>
+        <button class="generation" id="gen4">Gen IV</button>
+        <button class="generation" id="gen5">Gen V</button>
+        <button class="generation" id="gen6">Gen VI</button>
+        <button class="generation" id="gen7">Gen VII</button>
+        <button class="generation" id="gen8">Gen VIII</button>
+        <button class="generation" id="gen9">Gen IX</button>
+      </div>
+      <p class="message" id="message1">
+        To see pokemons, choose generation first...
+      </p>
+      <p class="message" id="message2">
+        There are <span id="numbers">0</span> pokemons in generation
+        <span id="genNum">0</span>
+      </p>
+
+      <input type="text" />
+
+      <div class="pokedex" id="cards"></div>
     </div>
-    <p class="message" id="message1">
-      To see pokemons, choose generation first...
-    </p>
-    <p class="message" id="message2">
-      There are <span id="numbers">0</span> pokemons in generation
-      <span id="genNum">0</span>
-    </p>
-
-    <input type="text" />
-
-    <div class="pokedex" id="cards"></div>
     <script src="main.js"></script>
   </body>
 </html>

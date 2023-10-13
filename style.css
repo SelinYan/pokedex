@@ -6,96 +6,36 @@
 
 body {
     text-align: center;
-    background-image: url(./sean-oulashin-KMn4VEeEPR8-unsplash.jpg);
+    background-image: url(./giorgio-trovato-scWhKf1ltv4-unsplash.jpg);
     background-size: 100%;
     background-position: fixed;
-    margin: 3rem;
+    margin: 5rem;
     font-family: 'Roboto', sans-serif;
+    color: #333;
 }
 
-#generation {
-  margin: 2rem;
-}
-
-p {
-  margin: 1rem;
-}
-
-input {
-  padding: 0.5rem;
-  font-size: inherit;
-}
-
-.pokedex {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  color: blue;
-}
-
-#cards {
-    max-width: 1200px;
-    margin: 0 auto;
-
-}
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    max-width: 200px;
-    max-height: 400px;
-    margin: auto;
-    padding: 30px;
-  }
-
-.card img {
-    width: 100%;
-}
-
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  .container {
-    padding: 2px 16px;
-  }
-
-
-/* 
-body {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  font-family: 'Open Sans', sans-serif;
-  margin: 5rem;
-  text-align: center;
-  color: white;
-}
-
-input {
-  padding: 0.5rem;
-  margin-bottom: 2rem;
-  font-size: inherit;
-  font-family: inherit;
+.generation {
+ 
 }
 
 p {
   color: #333;
 }
 
+input {
+  padding: 0.5rem;
+  font-size: inherit;
+  font-family: inherit;
+  margin-bottom: 2rem;
+}
+
 .pokedex {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
-  color: blue;
+  color: rgb(54, 133, 61);
 }
 
 .pokedex div {
@@ -111,17 +51,16 @@ p {
 
 @media (max-width: 1000px) {
   .pokedex {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 @media (max-width: 700px) {
   .pokedex {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 500px) {
   .pokedex {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-  */
