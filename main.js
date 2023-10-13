@@ -39,8 +39,8 @@ const pokeCards = () => {
   <p>${pokemon.id}</p>
   <h2>${pokemon.name}</h2>
   <div>
-    <p>Water</p>
-    <p>Poison</p>
+    <p>${pokemon.types}</p>
+    <p>${pokemon.height}, ${pokemon.weight}</p>
   </div>
 </div>`;
     })
