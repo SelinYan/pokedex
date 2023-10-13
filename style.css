@@ -4,25 +4,34 @@
   box-sizing: border-box;
 }
 
+h1 {
+  text-shadow: #dc6d6d 3px 3px 3px;
+}
+
 body {
     text-align: center;
     background-image: url(./giorgio-trovato-scWhKf1ltv4-unsplash.jpg);
     background-size: 100%;
-    background-position: fixed;
+    background-attachment: fixed;
     margin: 5rem;
     font-family: 'Roboto', sans-serif;
     color: #333;
 }
 
 .generation {
- 
+  margin: 5px;
+  padding: 5px;
+  color: #dc6d6d;
+  font-weight: bold;
 }
 
 p {
-  color: #333;
+  color: #b93d22;
+  background-color: white;
 }
 
 input {
+  margin: 5px;
   padding: 0.5rem;
   font-size: inherit;
   font-family: inherit;
