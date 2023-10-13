@@ -1,23 +1,26 @@
-const content = document.querySelector(".section");
+const content = document.querySelector("#cards");
 
-const pokeData = [1, 2, 3, 4, 5];
+let pokeData = [];
 
 // res can be any variable, eg response
 const fetchData = async () => {
-  await fetch("https://pokeapi.co/api/v2/pokemon?limit=121&offset=0")
+  const fetches = await fetch(
+    "https://pokeapi.co/api/v2/pokemon?limit=121&offset=0"
+  )
     .then((res) => res.json())
     .then((data) => {
-      const fetches = data.results.map((item) => {
-        return fetch(item.url)
-          .then((res) => res.json())
-          .then((data) => {
-            return {
-              id: data.id,
-              name: data.name,
-              img: data.sprites.other["official-artwork"].front_default,
-              types: data.types,
-            };
-          });
+      //first API call
+      return data.results.map(async (item) => {
+        //fetch each Pokemon 's url
+        const res = await fetch(item.url);
+        const data = await res.json();
+        console.log(data);
+        return {
+          id: data.id,
+          name: data.name,
+          img: data.sprites.other["official-artwork"].front_default,
+          types: data.types,
+        };
       });
     });
 
@@ -32,7 +35,7 @@ const pokeCards = () => {
   const cards = pokeData
     .map((pokemon) => {
       return `<div class="card">
-    <img src="./img/pikachu.jpg" />
+    <img src=${pokemon.img} />
     <p class="id">${pokemon.id}</p>
     <div class="container">
       <h2 class="id">name</h2>
