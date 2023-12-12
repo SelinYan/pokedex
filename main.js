@@ -1,5 +1,7 @@
 const content = document.querySelector("#cards");
 const generations = document.querySelectorAll(".generation");
+let pokemonNum = document.querySelector("#numbers");
+let generationNum = document.querySelector("#genNum");
 
 const gen1 = "gen1";
 const gen2 = "gen2";
@@ -13,7 +15,6 @@ const gen9 = "gen9";
 
 let selectedGeneration;
 let pokeData = [];
-
 // res can be any variable, eg response
 const fetchData = async () => {
   const fetches = await fetch(
@@ -21,6 +22,7 @@ const fetchData = async () => {
   )
     .then((res) => res.json())
     .then((data) => {
+      console.log("allPokemon", data);
       //first API call
       return data.results.map(async (item) => {
         //fetch each Pokemon 's url
@@ -41,43 +43,45 @@ const fetchData = async () => {
   });
 };
 
-/*
 const fetchGeneration = async (gen) => {
-  // fetch pokemon list
-  const generationFetch = await fetch(
-    `https://pokeapi.co/api/v2/generation/${gen}/`
-  )
-    .then((res) => res.json())
-    // fetch each pokemon
-    .then((generationData) => {
-      //first API call
-      return generationData.pokemon_species.map(async (item) => {
-        //fetch each Pokemon 's url
-        const res = await fetch(item.url);
-        const data = await res.json();
-        const officialArtwork = data.sprites.other["official-artwork"];
+  try {
+    const generationData = await fetch(
+      `https://pokeapi.co/api/v2/generation/${gen}/`
+    ).then((res) => res.json());
 
-        return {
-          id: data.id,
-          name: data.name,
-          img: officialArtwork ? officialArtwork.front_default : "",
-          types: data.types,
-        };
-      });
+    const pokemonSpecies = generationData.pokemon_species;
+    pokemonNum.textContent = pokemonSpecies.length;
+    generationNum.textContent = gen;
+
+    const fetches = pokemonSpecies.map(async (item) => {
+      const res = await fetch(item.url);
+      const data = await res.json();
+      const pokemonRes = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${data.id}`
+      );
+      const pokemonData = await pokemonRes.json();
+      const officialArtwork =
+        pokemonData.sprites.other["official-artwork"].front_default ||
+        data.sprites.front_default;
+      return {
+        id: pokemonData.id,
+        name: pokemonData.name,
+        img: officialArtwork,
+        types: pokemonData.types,
+      };
     });
-  Promise.all(generationFetch)
-    .then((res) => {
-      pokeData = res;
-      pokeCards();
-    })
-    .catch((error) => console.log(error));
+
+    const res = await Promise.all(fetches);
+    pokeData = res.flat(); // Flatten the array of arrays
+    pokeCards();
+  } catch (error) {
+    console.log(error);
+  }
 };
-*/
 
 const chooseGeneration = (id) => {
   switch (id) {
     case gen1:
-      console.log(id);
       return fetchGeneration(1);
     case gen2:
       return fetchGeneration(2);
