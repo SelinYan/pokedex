@@ -2,6 +2,15 @@ const content = document.querySelector("#cards");
 const generations = document.querySelectorAll(".generation");
 let pokemonNum = document.querySelector("#numbers");
 let generationNum = document.querySelector("#genNum");
+const searchInput = document.querySelector("#searchInput");
+
+const searchPokemon = () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  const filteredData = pokeData.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchTerm)
+  );
+  pokeCards(filteredData);
+};
 
 const gen1 = "gen1";
 const gen2 = "gen2";
@@ -13,8 +22,7 @@ const gen7 = "gen7";
 const gen8 = "gen8";
 const gen9 = "gen9";
 
-let selectedGeneration;
-let pokeData = [];
+let allpokeData = [];
 // res can be any variable, eg response
 const fetchData = async () => {
   const fetches = await fetch(
@@ -22,7 +30,6 @@ const fetchData = async () => {
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log("allPokemon", data);
       //first API call
       return data.results.map(async (item) => {
         //fetch each Pokemon 's url
@@ -33,12 +40,15 @@ const fetchData = async () => {
           name: data.name,
           img: data.sprites.other["official-artwork"].front_default,
           types: data.types,
+          height: data.height,
+          weight: data.weight,
         };
       });
     });
 
   Promise.all(fetches).then((res) => {
-    pokeData = res;
+    allpokeData = res;
+    pokeData = allpokeData;
     pokeCards();
   });
 };
@@ -62,12 +72,14 @@ const fetchGeneration = async (gen) => {
       const pokemonData = await pokemonRes.json();
       const officialArtwork =
         pokemonData.sprites.other["official-artwork"].front_default ||
-        data.sprites.front_default;
+        pokemonData.sprites.front_default;
       return {
         id: pokemonData.id,
         name: pokemonData.name,
         img: officialArtwork,
         types: pokemonData.types,
+        height: pokemonData.height,
+        weight: pokemonData.weight,
       };
     });
 
@@ -102,16 +114,18 @@ const chooseGeneration = (id) => {
   }
 };
 
-const pokeCards = () => {
-  const cards = pokeData
+const pokeCards = (data = pokeData) => {
+  const cards = data
     .map((pokemon) => {
       return `<div>
   <img src="${pokemon.img}" alt="${pokemon.name}"/>
-  <p>${pokemon.id}</p>
+  <span class="pokemon-id">#${pokemon.id}</span>
   <h2>${pokemon.name}</h2>
   <div>
-    <p>${pokemon.types}</p>
-    <p>${pokemon.height}, ${pokemon.weight}</p>
+      ${pokemon.types.map((type) => {
+        return `<p>${type.type.name}</p>`;
+      })}
+    <p>Height:${pokemon.height}, Weight:${pokemon.weight}</p>
   </div>
 </div>`;
     })
